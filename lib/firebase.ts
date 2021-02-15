@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import fb from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
@@ -13,10 +13,11 @@ const firebaseConfig = {
 };
 
 // Initialize app
-if (!firebase.app.length) {
-    firebase.initializeApp(firebaseConfig)
-}
+export const firebase = !fb.apps.length ? fb.initializeApp(firebaseConfig) : fb.app()
 
-export const auth      = firebase.auth()
-export const firestore = firebase.firestore()
-export const storage   = firebase.storage()
+export const auth = fb.auth()
+
+export const googleAuthProvider = new fb.auth.GoogleAuthProvider()
+
+export const firestore = fb.firestore()
+export const storage   = fb.storage()
