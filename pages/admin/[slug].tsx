@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router'
+import Metatags from '../../components/Metatags'
 
 export default function AdminPostEdit({  }) {
-    const router = useRouter()
+
     return (
         <div>
+            <Metatags title="admin page"/>
             <h1>Edit Post</h1>
-            <p>{router.query.slug}</p>
         </div>
     )
 }
