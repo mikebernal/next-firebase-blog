@@ -1,10 +1,12 @@
 import Metatags from '../../components/Metatags'
+import AuthCheck from '../../components/AuthCheck'
 
 export default function AdminPostsPage({ }) {
     return (
         <main>
-            <Metatags title="admin page"/>
-            <h1>Admin posts</h1>
+            <AuthCheck>
+                
+            </AuthCheck>
         </main>
     )
 }
