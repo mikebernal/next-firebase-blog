@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router'
 import UserProfile from '../../components/UserProfile'
 import PostFeed from '../../components/PostFeed'
 import { getUserWithUsername, postToJSON } from '../../lib/firebase'
 
 export default function UserProfilePage({ user, posts}) {
-    const router = useRouter()
 
     return (
         <main>
@@ -19,6 +17,13 @@ export async function getServerSideProps({ query }) {
 
     const userDoc = await getUserWithUsername(username)
 
+    // If no userDoc, short circuit to 404
+    if (!userDoc) {
+        return {
+            notFound: true,
+        }
+    }
+
 
     // JSON serializable data
     let user = null
@@ -32,7 +37,7 @@ export async function getServerSideProps({ query }) {
             .orderBy('createdAt', 'desc')
             .limit(5)
         
-            posts = (await postsQuery.get()).docs.map(postToJSON)
+        posts = (await postsQuery.get()).docs.map(postToJSON)
     }
 
     return {

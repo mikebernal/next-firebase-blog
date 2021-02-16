@@ -22,7 +22,6 @@ export const googleAuthProvider = new fb.auth.GoogleAuthProvider()
 export const firestore = fb.firestore()
 export const storage   = fb.storage()
 
-
 // Helper functions
 
 /**
@@ -35,7 +34,6 @@ export async function getUserWithUsername(username) {
     const userDoc  = (await query.get()).docs[0]
     return userDoc
 }
-
 
 /**
  * Convertsa firestore document to JSON
